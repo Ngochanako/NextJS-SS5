@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import path from "path";
+import fs from "fs";
+
 const users=[
     {
         id:1,
@@ -34,10 +37,21 @@ export async function DELETE(request:Request,{params}:ParamType) {
     })
 }
 export async function PUT(request:Request,{params}:ParamType) {
-    const {id}=params;
-    const data=await request.json();
-    return NextResponse.json({
-        idForUpdate:id,
-        dataUpdate:data
-    })
+    const filePath=path.join(process.cwd(),"database/users.json");
+    const users=JSON.parse(fs.readFileSync(filePath,"utf8"));
+    const findIndex=users.findIndex((btn:any)=>btn.id==params.id);
+    const userEdit=await request.json();
+    if(findIndex!=-1){
+        users[findIndex]=userEdit;
+        fs.writeFileSync(filePath,JSON.stringify(users),"utf8");
+        return NextResponse.json({
+            message:"Cập nhật thành công",
+            user:userEdit
+        })
+    }
+
+}
+export async function PATCH(request:Request,{params}:ParamType) {
+    const filePath=path.join(process.cwd(),"database","users.json");
+    const users=JSON.parse(fs.readFileSync(filePath,"utf8"));    
 }
