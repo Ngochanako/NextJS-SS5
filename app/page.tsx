@@ -11,7 +11,7 @@ import Bai6 from "./api/Bai6";
 export default function Home() {
   return (
     <div className="m-[50px]">
-      lllln
+      llmm
       <Bai1/>
       <Bai2/>
       <Bai3/>

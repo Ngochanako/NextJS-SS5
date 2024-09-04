@@ -15,6 +15,7 @@ export default function page() {
     },[])
   return (
     <div>
+      <p>ngoc</p>
       {users.map((user:any)=>(
         <div>
           kkkkk
