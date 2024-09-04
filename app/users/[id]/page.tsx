@@ -1,3 +1,4 @@
+'use client'
 import axios from 'axios';
 import { log } from 'console';
 import React, { useEffect, useState } from 'react'

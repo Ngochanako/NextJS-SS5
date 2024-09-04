@@ -14,27 +14,27 @@ const users=[
         age:26
     }
 ]
-export async function GET() {
-    try {
-        const filePath=path.join(process.cwd(),"database/users.json");
-        const data=fs.readFileSync(filePath, "utf8");
-        console.log(JSON.parse(data))
-        return NextResponse.json(JSON.parse(data));
-    } catch (error) {
-        return NextResponse.json(error)
-    }
-   
-}
-// export async function GET(request:Request) { 
-//     const url=new URL(request.url);
-//     const name=url.searchParams.get('user_name');
-//     if(!name) return NextResponse.json(users)
-//     const listFilterByName=users.filter(btn=>btn.user_name.toLowerCase().includes(name));
-//     if(listFilterByName.length==0){
-//         return NextResponse.json("Không tìm thấy người dùng")
+// export async function GET() {
+//     try {
+//         const filePath=path.join(process.cwd(),"database/users.json");
+//         const data=fs.readFileSync(filePath, "utf8");
+//         console.log(JSON.parse(data))
+//         return NextResponse.json(JSON.parse(data));
+//     } catch (error) {
+//         return NextResponse.json(error)
 //     }
-//     return NextResponse.json(listFilterByName)
+   
 // }
+export async function GET(request:Request) { 
+    const url=new URL(request.url);
+    const name=url.searchParams.get('user_name');
+    if(!name) return NextResponse.json(users)
+    const listFilterByName=users.filter(btn=>btn.user_name.toLowerCase().includes(name));
+    if(listFilterByName.length==0){
+        return NextResponse.json("Không tìm thấy người dùng")
+    }
+    return NextResponse.json(listFilterByName)
+}
 // export async function POST(request:Request) {   
 //     const data=await request.json();
 //     console.log(data)
