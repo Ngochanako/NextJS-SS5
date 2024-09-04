@@ -15,7 +15,11 @@ export default function page() {
     },[])
   return (
     <div>
-      
+      {users.map((user:any)=>(
+        <div>
+          {user.name}
+        </div>
+      ))}
     </div>
   )
 }

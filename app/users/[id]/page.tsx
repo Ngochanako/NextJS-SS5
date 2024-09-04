@@ -8,7 +8,7 @@ export default function page() {
     useEffect(()=>{
         let data=axios.get('http://localhost:3000/api/users');
         data.then(res=>{
-           console.log(data);
+           setUsers(res.data);
         })
         .catch(err=>console.log(err))
     },[])
